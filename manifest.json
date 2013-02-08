@@ -3,11 +3,6 @@
   "version": "0.1",
   "manifest_version": 2,
   "description": "Focus your attention and your typing on a specific form field.",
-  "options_page": "options.html",
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
-  },
   "permissions": [
     "tabs"
   ],
