@@ -12,14 +12,13 @@ $(function() {
   var $targetInput = null;
 
   $document.on('focus', 'textarea', function() {
+    console.log('focus');
     var $input = $(this);
-    debugger;
     console.log($input);
     if ($input.parent().hasClass('focaltype-overlay')) {
       console.log('skip');
       return;
     }
-    console.log('focus');
     $body.addClass('focaltyped');
     $targetInput = $input
     $focaltypeTextarea.val($input.val()).attr('placeholder', $input.attr('placeholder')).focus();
@@ -34,4 +33,6 @@ $(function() {
       $focaltypeTextarea.val('').removeAttr('placeholder');
     }
   });
+
+  console.log("loaded");
 });
