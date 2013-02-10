@@ -1,5 +1,7 @@
 $(function() {
   var FOCALTYPE_TEMPLATE = '<div class="focaltype-overlay">'+
+    '<img src="chrome-extension://giicebkehhklkbliaifmmfnjdmlellkb/images/logo.png" />'+
+    'Focaltype'+
     '<a href="#" class="close">close</a>'+
     '<textarea></textarea>'+
   '</div>';
@@ -12,11 +14,8 @@ $(function() {
   var $targetInput = null;
 
   $document.on('focus', 'textarea', function() {
-    console.log('focus');
     var $input = $(this);
-    console.log($input);
     if ($input.parent().hasClass('focaltype-overlay')) {
-      console.log('skip');
       return;
     }
     $body.addClass('focaltyped');
@@ -24,15 +23,15 @@ $(function() {
     $focaltypeTextarea.val($input.val()).attr('placeholder', $input.attr('placeholder')).focus();
   });
 
-  $focaltypeTextarea.on('blur', function() {
-    console.log('blur');
+  $focaltypeOverlay.on('click', '.close', function(e) {
+    e.preventDefault();
+  });
+  $focaltypeOverlay.on('blur', 'textarea', function() {
     $body.removeClass('focaltyped');
     if ($targetInput) {
-      $targetInput.val($focaltypeTextarea.val()).focus();
+      $targetInput.val($focaltypeTextarea.val());
       $targetInput = null;
       $focaltypeTextarea.val('').removeAttr('placeholder');
     }
   });
-
-  console.log("loaded");
 });
